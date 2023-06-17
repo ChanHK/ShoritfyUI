@@ -1,0 +1,8 @@
+.main {
+  background-color: #30211f;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+}
