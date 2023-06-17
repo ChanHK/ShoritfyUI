@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
         isLoading: true,
       };
     case "LOGIN_SUCCESS":
-    case "REQISTER_SUCCESS":
+    case "REGISTER_FAIL":
       Cookies.set("token", action.payload.token);
       return {
         ...state,
@@ -26,7 +26,8 @@ export default function (state = initialState, action) {
       };
     case "LOGIN_FAIL":
     case "LOGOUT_SUCCESS":
-    case "REQISTER_FAIL":
+    case "REGISTER_FAIL":
+      console.log(action.payload.message)
       Cookies.remove("token");
       return {
         ...state,
