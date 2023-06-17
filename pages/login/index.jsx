@@ -4,7 +4,7 @@ import Title from "../../components/title.jsx";
 import { connect } from "react-redux";
 import { login } from "../../store/actions/authentication.js";
 import PropTypes from "prop-types";
-import { withRouter } from 'next/router';
+import { withRouter } from "next/router";
 
 class Login extends Component {
   constructor() {
@@ -17,15 +17,26 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (this.props.authenticateReducer.isAuthenticated) {
-      this.props.router.push('/register');
+    const { authenticateReducer, router } = this.props;
+    if (
+      authenticateReducer.isAuthenticated ||
+      authenticateReducer.token !== undefined
+    ) {
+      router.push("/overview");
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.authenticateReducer.isAuthenticated) {
-      this.props.router.push('/register');
+    const { authenticateReducer, router } = this.props;
+    if (authenticateReducer.isAuthenticated) router.push("/overview");
+
+    if (prevProps.authenticateReducer.message !== authenticateReducer.message) {
+      this.setState({ message: authenticateReducer.message });
     }
+  }
+
+  componentWillUnmount() {
+    this.props.authenticateReducer.message = null;
   }
 
   onChange = (e) => {
