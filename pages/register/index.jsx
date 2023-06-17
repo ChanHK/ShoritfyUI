@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import styles from "../../styles/login.module.css";
 import Title from "../../components/title.jsx";
 import { connect } from "react-redux";
-import { login } from "../../store/actions/authentication.js";
+import { register } from "../../store/actions/authentication.js";
 import PropTypes from "prop-types";
-import { withRouter } from 'next/router';
 
-class Login extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -17,14 +16,10 @@ class Login extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     if (this.props.authenticateReducer.isAuthenticated) {
-      this.props.router.push('/register');
-    }
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.props.authenticateReducer.isAuthenticated) {
-      this.props.router.push('/register');
+      console.log("authenticated");
+      // this.props.history.push("/home");
     }
   }
 
@@ -39,7 +34,7 @@ class Login extends Component {
     };
 
     e.preventDefault();
-    this.props.login(newUser);
+    this.props.register(newUser);
   };
 
   render() {
@@ -53,7 +48,7 @@ class Login extends Component {
             <div className="col-md-6">
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">Login</h5>
+                  <h5 className="card-title">Register</h5>
                   <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                       <label htmlFor="email">email</label>
@@ -78,7 +73,7 @@ class Login extends Component {
                       />
                     </div>
                     <button type="submit" className="btn btn-primary">
-                      Login
+                      Register
                     </button>
                   </form>
                   {message && <p>{message}</p>}
@@ -92,8 +87,8 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
   authenticateReducer: PropTypes.object.isRequired,
 };
 
@@ -101,4 +96,4 @@ const mapStateToProps = (state) => ({
   authenticateReducer: state.authenticateReducer,
 });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { register })(Register);
