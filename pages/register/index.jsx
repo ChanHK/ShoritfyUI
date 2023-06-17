@@ -16,11 +16,26 @@ class Register extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
-    if (this.props.authenticateReducer.isAuthenticated) {
-      console.log("authenticated");
-      // this.props.history.push("/home");
+    const { authenticateReducer, router } = this.props;
+    if (
+      authenticateReducer.isAuthenticated ||
+      authenticateReducer.token !== undefined
+    ) {
+      router.push("/overview");
     }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { authenticateReducer, router } = this.props;
+    if (authenticateReducer.isAuthenticated) router.push("/overview");
+
+    if (prevProps.authenticateReducer.message !== authenticateReducer.message) {
+      this.setState({ message: authenticateReducer.message });
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.authenticateReducer.message = null;
   }
 
   onChange = (e) => {
@@ -51,7 +66,7 @@ class Register extends Component {
                   <h5 className="card-title">Register</h5>
                   <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                      <label htmlFor="email">email</label>
+                      <label htmlFor="email">Email</label>
                       <input
                         type="text"
                         className="form-control"

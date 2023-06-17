@@ -4,7 +4,6 @@ import Title from "../../components/title.jsx";
 import { connect } from "react-redux";
 import { login } from "../../store/actions/authentication.js";
 import PropTypes from "prop-types";
-import { withRouter } from "next/router";
 
 class Login extends Component {
   constructor() {
@@ -67,7 +66,7 @@ class Login extends Component {
                   <h5 className="card-title">Login</h5>
                   <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                      <label htmlFor="email">email</label>
+                      <label htmlFor="email">Email</label>
                       <input
                         type="text"
                         className="form-control"

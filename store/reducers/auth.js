@@ -16,7 +16,7 @@ export default function (state = initialState, action) {
         isLoading: true,
       };
     case "LOGIN_SUCCESS":
-    case "REGISTER_FAIL":
+    case "REGISTER_SUCCESS":
       Cookies.set("token", action.payload.token);
       return {
         ...state,
