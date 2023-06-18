@@ -17,10 +17,13 @@ class Login extends Component {
 
   componentDidMount() {
     const { authenticateReducer, router } = this.props;
+
     if (
-      authenticateReducer.isAuthenticated ||
-      authenticateReducer.token !== undefined
+      authenticateReducer.isAuthenticated &&
+      (authenticateReducer.token !== undefined ||
+        authenticateReducer.token !== null)
     ) {
+      console.log("to overview");
       router.push("/overview");
     }
   }
