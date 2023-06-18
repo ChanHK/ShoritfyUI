@@ -55,3 +55,10 @@ export const register = (data) => async (dispatch) => {
     });
   }
 };
+
+
+export const logout = () => (dispatch) => {
+  dispatch({
+    type: "LOGOUT_SUCCESS",
+  });
+};
