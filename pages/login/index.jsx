@@ -9,28 +9,29 @@ class Login extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
+      email: "test@gmail.com",
+      password: "abc123",
       message: null,
     };
   }
 
   componentDidMount() {
     const { authenticateReducer, router } = this.props;
-
     if (
-      authenticateReducer.isAuthenticated &&
-      (authenticateReducer.token !== undefined ||
-        authenticateReducer.token !== null)
+      authenticateReducer.token !== undefined &&
+      authenticateReducer.token !== null
     ) {
-      console.log("to overview");
       router.push("/overview");
     }
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { authenticateReducer, router } = this.props;
-    if (authenticateReducer.isAuthenticated) router.push("/overview");
+    if (
+      authenticateReducer.token !== undefined &&
+      authenticateReducer.token !== null
+    )
+      router.push("/overview");
 
     if (prevProps.authenticateReducer.message !== authenticateReducer.message) {
       this.setState({ message: authenticateReducer.message });

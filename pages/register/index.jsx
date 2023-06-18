@@ -18,9 +18,8 @@ class Register extends Component {
   componentDidMount() {
     const { authenticateReducer, router } = this.props;
     if (
-      authenticateReducer.isAuthenticated &&
-      (authenticateReducer.token !== undefined ||
-        authenticateReducer.token !== null)
+      authenticateReducer.token !== undefined &&
+      authenticateReducer.token !== null
     ) {
       router.push("/overview");
     }
@@ -28,7 +27,11 @@ class Register extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { authenticateReducer, router } = this.props;
-    if (authenticateReducer.isAuthenticated) router.push("/overview");
+    if (
+      authenticateReducer.token !== undefined &&
+      authenticateReducer.token !== null
+    )
+      router.push("/overview");
 
     if (prevProps.authenticateReducer.message !== authenticateReducer.message) {
       this.setState({ message: authenticateReducer.message });

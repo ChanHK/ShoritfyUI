@@ -2,7 +2,6 @@ import Cookies from "js-cookie";
 
 const initialState = {
   token: Cookies.get("token"),
-  isAuthenticated: null,
   isLoading: false,
   message: null,
 };
@@ -21,7 +20,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         ...action.payload,
-        isAuthenticated: true,
         isLoading: false,
       };
     case "LOGIN_FAIL":
@@ -30,7 +28,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: null,
-        isAuthenticated: false,
         isLoading: false,
         message: action.payload.message,
       };
@@ -39,7 +36,6 @@ export default function (state = initialState, action) {
       return {
         ...state,
         token: null,
-        isAuthenticated: false,
         isLoading: false,
       };
     default:
