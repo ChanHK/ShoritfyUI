@@ -25,7 +25,6 @@ export default function (state = initialState, action) {
         isLoading: false,
       };
     case "LOGIN_FAIL":
-    case "LOGOUT_SUCCESS":
     case "REGISTER_FAIL":
       Cookies.remove("token");
       return {
@@ -34,6 +33,14 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         isLoading: false,
         message: action.payload.message,
+      };
+    case "LOGOUT_SUCCESS":
+      Cookies.remove("token");
+      return {
+        ...state,
+        token: null,
+        isAuthenticated: false,
+        isLoading: false,
       };
     default:
       return state;
