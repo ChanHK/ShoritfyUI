@@ -92,6 +92,9 @@ class Overview extends Component {
     if (!originalUrl.trim()) {
       originalUrlError = "Original URL is required.";
       isValid = false;
+    } else if (!this.isValidUrl(originalUrl)) {
+      originalUrlError = "Invalid URL format.";
+      isValid = false;
     }
 
     if (!isValid) {
@@ -111,6 +114,18 @@ class Overview extends Component {
     this.props.createShortCode(newData).then(() => {
       this.props.fetchShortenedUrls();
     });
+
+    this.setState({
+      customCodeError: null,
+      originalUrlError: null,
+      customCode: null,
+      originalUrl: "",
+    });
+  };
+
+  isValidUrl = (url) => {
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+    return urlRegex.test(url);
   };
 
   handleDelete = (shortCode) => {
