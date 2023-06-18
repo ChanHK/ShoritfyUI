@@ -13,9 +13,13 @@ export default function (state = initialState, action) {
         ...state,
         isLoading: true,
       };
-    case "FETCH_SHORTENED_URLS_SUCCESS":
     case "SHORTCODE_CREATE_SUCCESS":
     case "SHORTCODE_DELETE_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case "FETCH_SHORTENED_URLS_SUCCESS":
       return {
         ...state,
         isLoading: false,

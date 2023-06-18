@@ -16,7 +16,6 @@ const tokenConfig = () => {
 
 export const createShortCode = (data) => async (dispatch) => {
   dispatch({ type: "SHORTCODE_CREATE_BEGIN" });
-
   try {
     const response = await axios.post(
       "https://shortify-u856.onrender.com/shorten",
@@ -38,7 +37,6 @@ export const createShortCode = (data) => async (dispatch) => {
 
 export const deleteShortCode = (shortcode) => async (dispatch) => {
   dispatch({ type: "SHORTCODE_DELETE_BEGIN" });
-
   try {
     const response = await axios.delete(
       `https://shortify-u856.onrender.com/delete/${shortcode}`,
@@ -59,7 +57,6 @@ export const deleteShortCode = (shortcode) => async (dispatch) => {
 
 export const fetchShortenedUrls = () => async (dispatch) => {
   dispatch({ type: "FETCH_SHORTENED_URLS_BEGIN" });
-
   try {
     const response = await axios.get(
       "https://shortify-u856.onrender.com/shorten",
