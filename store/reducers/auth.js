@@ -27,7 +27,6 @@ export default function (state = initialState, action) {
     case "LOGIN_FAIL":
     case "LOGOUT_SUCCESS":
     case "REGISTER_FAIL":
-      console.log(action.payload.message)
       Cookies.remove("token");
       return {
         ...state,
