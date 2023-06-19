@@ -123,6 +123,11 @@ class Overview extends Component {
     });
   };
 
+  handleLogout = () => {
+    this.props.logout();
+    this.props.router.push("/login");
+  };
+
   isValidUrl = (url) => {
     const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/;
     return urlRegex.test(url);
@@ -198,13 +203,22 @@ class Overview extends Component {
       <div className={styles.main}>
         <div className="container">
           <h2>Overview</h2>
-          <button
-            type="button"
-            className="btn btn-primary mb-3"
-            onClick={this.handleCreateClick}
-          >
-            Create Shorten Code
-          </button>
+          <div className="d-flex justify-content-between mb-3">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={this.handleCreateClick}
+            >
+              Create Shorten Code
+            </button>
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={this.handleLogout}
+            >
+              Logout
+            </button>
+          </div>
           {showCreateForm && this.renderCreateForm()}
           <table className="table">
             <thead>
