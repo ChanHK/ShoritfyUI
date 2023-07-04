@@ -4,6 +4,7 @@ import Title from "../../components/title.jsx";
 import { connect } from "react-redux";
 import { login } from "../../store/actions/authentication.js";
 import PropTypes from "prop-types";
+import LoaderSpinner from "../../components/LoaderSpinner.jsx";
 
 class Login extends Component {
   constructor() {
@@ -58,6 +59,8 @@ class Login extends Component {
 
   render() {
     const { email, password, message } = this.state;
+    const {isLoading} = this.props.authenticateReducer
+    if (isLoading) return <LoaderSpinner />;
 
     return (
       <div className={styles.main}>

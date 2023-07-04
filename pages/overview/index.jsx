@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import styles from "../../styles/overview.module.css";
 import Cookies from "js-cookie";
 import jwt_decode from "jwt-decode";
+import LoaderSpinner from "../../components/LoaderSpinner.jsx";
 
 class Overview extends Component {
   constructor() {
@@ -198,6 +199,8 @@ class Overview extends Component {
 
   render() {
     const { data, showCreateForm } = this.state;
+    const {isLoading} = this.props.overviewReducer
+    if (isLoading) return <LoaderSpinner />;
 
     return (
       <div className={styles.main}>
