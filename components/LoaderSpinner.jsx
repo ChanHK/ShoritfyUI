@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Circles } from "react-loader-spinner";
+import { MagnifyingGlass } from "react-loader-spinner";
 import styles from "../styles/loaderSpinner.module.css";
 
 const LoaderSpinner = () => {
@@ -9,7 +9,7 @@ const LoaderSpinner = () => {
   });
   return (
     <div className={styles.container}>
-      <Circles color="#00BFFF" height={100} width={100} />
+      <MagnifyingGlass color="#00BFFF" height={100} width={100} />
     </div>
   );
 };
